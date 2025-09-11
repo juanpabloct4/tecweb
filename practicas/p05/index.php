@@ -30,5 +30,42 @@
         echo '<li>$house*5 es inválida porque el símbolo * no está permitido.</li>';
         echo '</ul>';
     ?>
+
+    <h2>Ejercicio 2</h2>
+    <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
+    <p>$a = "ManejadorSQL"; <br> $b = 'MySQL'; <br> $c = &$a;</p>
+    <p>a. Ahora muestra el contenido de cada variable:</p>
+    <?php
+        $a = "ManejadorSQL";
+        $b = 'MySQL';
+        $c = &$a;
+
+        echo '<h4>Respuesta:</h4>';
+        echo '<ul>';
+        echo "<li>$a</li>";
+        echo "<li>$b</li>";
+        echo "<li>$c</li>";
+        echo '</ul>';
+    ?>
+    <p>b. Agrega al código actual las siguientes asignaciones:</p>
+    <p>$a = "PHP server"; <br> $b = &$a;</p>
+    <p>c. Vuelve a mostrar el contenido de cada uno</p>
+    <?php
+        $a = "PHP server";
+        $b = &$a;
+        $c = &$a;
+
+        
+        echo '<h4>Respuesta:</h4>';
+        echo '<ul>';
+        echo "<li>$a</li>";
+        echo "<li>$b</li>";
+        echo "<li>$c</li>";
+        echo '</ul>';
+    ?>
+    <p>d. Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones</p>
+    <p>Tanto como la variable $b y $c tiene como referencia la variable $a, por eso las tres variables tiene PHP server</p>
+
+
 </body>
 </html>
