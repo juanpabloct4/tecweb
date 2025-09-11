@@ -54,7 +54,6 @@
         $a = "PHP server";
         $b = &$a;
         $c = &$a;
-
         
         echo '<h4>Respuesta:</h4>';
         echo '<ul>';
@@ -65,6 +64,34 @@
     ?>
     <p>d. Describe y muestra en la página obtenida qué ocurrió en el segundo bloque de asignaciones</p>
     <p>Tanto como la variable $b y $c tiene como referencia la variable $a, por eso las tres variables tiene PHP server</p>
+
+
+    <h2>Ejercicio 3</h2>
+    <p>Muestra el contenido de cada variable inmediantamente después de cada asignación, verificar la evolución
+        del tipo de estas variables (imprime todos los componentes de los arreglo):</p>
+    <p>$a = "PHP5"; <br> $z[] = &$a; <br>$b = "5a version de PHP"; <br> $c = $b*10; <br> $a .= $b; <br> $b *= $c; <br> $z[0] = "MySQL";</p>
+
+    <?php
+        echo '<h4>Respuesta</h4>';
+        echo '<ul>';
+        $a = "PHP5";
+        echo "<li>\$a = $a</li>";
+        $z[] = &$a;
+        echo "<li>\$z[0] = $z[0]</li>";
+        $b = "5a version de PHP";
+        echo "<li>\$b = $b</li>";
+        @$c = $b*10;
+        echo "<li>\$c = $c</li>";
+        $a .= $b; //.= pega el contenido de $b al final de $a
+        echo "<li>\$a = $a</li>";
+        $b *= $c; //$b = $b * $c
+        echo "<li>\$b = $b</li>";
+        $z[0] = "MySQL";
+        echo "<li>\$z[0] = $z[0]</li>";
+        echo '</ul>';
+    ?>
+
+
 
 
 </body>
