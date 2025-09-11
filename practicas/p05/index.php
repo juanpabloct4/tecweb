@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Práctica 3</title>
+    <title>Práctica 5</title>
 </head>
 <body>
     <h2>Ejercicio 1</h2>
@@ -112,9 +112,26 @@
         echo '<li>$b ='. $GLOBALS['b'] .'</li>';
         $z[0] = "MySQL";
         echo '<li>$z[0] = '. $GLOBALS['z'][0] .'</li>';
-
+        echo '</ul>';
     ?>
 
+    <h2>Ejercicio 5</h2>
+    <p>Dar el valor de las variables $a, $b, $c al final del siguiente scrip:</p>
+    <p>$a = "7 personas";<br>$b = (integer) $a;<br>$a = "9E3";<br>$c = (double) $a;
+
+    <?php
+        $a = "7 personas";
+        $b = (integer) $a;
+        $a = "9E3";
+        $c = (double) $a;
+
+        echo '<h4>Respuesta</h4>';
+        echo '<ul>';
+        echo '<li>$a = '.$a.'</li>';
+        echo '<li>$b = '.$b.'</li>';
+        echo '<li>$c = '.$c.'</li>';
+        echo '</ul>';
+    ?>
 
 </body>
 </html>
