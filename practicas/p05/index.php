@@ -120,6 +120,10 @@
     <p>$a = "7 personas";<br>$b = (integer) $a;<br>$a = "9E3";<br>$c = (double) $a;
 
     <?php
+        unset($a);
+        unset($b);
+        unset($c);
+
         $a = "7 personas";
         $b = (integer) $a;
         $a = "9E3";
@@ -139,6 +143,10 @@
     <p>$a = “0”;<br>$b = “TRUE”;<br>$c = FALSE;<br>$d = ($a OR $b);<br>$e = ($a AND $c);<br>$f = ($a XOR $b);</p>
     
     <?php
+        unset($a);
+        unset($b);
+        unset($c);
+
         $a = "0";
         $b = "TRUE";
         $c = FALSE;
@@ -160,6 +168,19 @@
         echo '<ul>';
         echo '<li>$c = ' . var_export($c, true) . '</li>';
         echo '<li>$e = ' . var_export($e, true) . '</li>';
+        echo '</ul>';
+    ?>
+
+    <h2>Ejercicio 7</h2
+    <p>Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
+    <p>a. La versión de Apache y PHP,<br>b. El nombre del sistema operativo (servidor),<br>c. El idioma del navegador(cliente).</p>
+    <?php
+        echo "<h4>Respuesta</h4>";
+        echo '<ul>';
+        echo '<li>Versión de PHP: '.phpversion(). '</li>';
+        echo '<li>Versión de Apache: '.$_SERVER['SERVER_SOFTWARE']. '</li>';
+        echo '<li>Sistema Operativo: '.php_uname('s').'</li>';
+        echo '<li>Idioma del Navegador: '.$_SERVER['HTTP_ACCEPT_LANGUAGE'].'</li>';
         echo '</ul>';
     ?>
 
