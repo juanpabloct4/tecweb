@@ -24,7 +24,7 @@
           <li>Dirección de E-mail: <input type="email" name="email"> </li>
           <li>Número Telefónico: <input type="tel" name="phone"> </li>
           <li>Mis tenis son tan feos porque...<br>
-          <textarea name="story" rows="4" cols="60" maxlength="..." placeholder="No más de 300 caracteres de longitud"></textarea></li>
+          <textarea name="story" rows="4" cols="60" maxlength="300" placeholder="No más de 300 caracteres de longitud"></textarea></li>
           </ul>
 
           <h2>Diseña tus Mike personalizados:</h2>
@@ -33,18 +33,18 @@
 
           <p>Color <em>(escoge uno)</em>:</p>
             <ul>
-            <li>Rojo</li>
-            <li>Azul</li>
-            <li>Negro</li>
-            <li>Plateado</li>
+            <li><input type="radio" name="color" value="rojo">Rojo</li>
+            <li><input type="radio" name="color" value="azul">Azul</li>
+            <li><input type="radio" name="color" value="negro">Negro</li>
+            <li><input type="radio" name="color" value="plateado">Plateado</li>
             </ul>
 
           <p>Características <em>(escoge tantas como quieras)</em>:</p>
             <ul>
-            <li>Cordones brillantes</li>
-            <li>Logo metálico</li>
-            <li>Suela luminosa</li>
-            <li>WiFi integrado</li>
+            <li><input type="checkbox" name="features[]" value="cordones brillantes">Cordones brillantes</li>
+            <li><input type="checkbox" name="features[]" value="logo metalico">Logo metálico</li>
+            <li><input type="checkbox" name="features[]" value="suela luminosa">Suela luminosa</li>
+            <li><input type="checkbox" name="features[]" value="WiFi integrado">WiFi integrado</li>
             </ul>
 
           <p>Talla</p>
