@@ -17,7 +17,9 @@
     <p>¿Quieres cambiar tus viejos tenis por un par personalizado de Tenis Mike&#174;?<br><br>Justifica el por qué tus tenis se <em>tienen que</em> ir y tú puedes ser uno de los diez afortunados ganadores.</p>
 
     <form action="http://52.43.117.247/neo/classroom/tw/concurso.php" method="post">
-      <p>Información del Participante</p>
+      
+      <fieldset>
+        <legend>Información del Participante</legend>
 
           <ul>
           <li>Nombre: <input type="text" name="name"> </li>
@@ -26,32 +28,52 @@
           <li>Mis tenis son tan feos porque...<br>
           <textarea name="story" rows="4" cols="60" maxlength="300" placeholder="No más de 300 caracteres de longitud"></textarea></li>
           </ul>
+      </fieldset>
+      
+        <h2>Diseña tus Mike personalizados:</h2>
+        
+      <fieldset>
+          <legend>Diseño personalizado del Tenis</legend>
+          
+          <fieldset>
+            <legend>Color <em>(escoge uno)</em>:</legend>
+              <ul>
+              <li><input type="radio" name="color" value="rojo">Rojo</li>
+              <li><input type="radio" name="color" value="azul">Azul</li>
+              <li><input type="radio" name="color" value="negro">Negro</li>
+              <li><input type="radio" name="color" value="plateado">Plateado</li>
+              </ul>
+          </fieldset>
 
-          <h2>Diseña tus Mike personalizados:</h2>
+          <fieldset>
+            <legend>Características <em>(escoge tantas como quieras)</em>:</legend>
+              <ul>
+              <li><input type="checkbox" name="features[]" value="cordones brillantes">Cordones brillantes</li>
+              <li><input type="checkbox" name="features[]" value="logo metalico">Logo metálico</li>
+              <li><input type="checkbox" name="features[]" value="suela luminosa">Suela luminosa</li>
+              <li><input type="checkbox" name="features[]" value="WiFi integrado">WiFi integrado</li>
+              </ul>
+          </fieldset>
 
-          <p>Diseño personalizado del Tenis</p>
+          <fieldset>
+            <legend>Talla</legend>
+            <p>Las medidas reflejan el estándar masculino:
+            <select name="size">
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+            </select></p>
+          </fieldset>
+          
+      </fieldset>
 
-          <p>Color <em>(escoge uno)</em>:</p>
-            <ul>
-            <li><input type="radio" name="color" value="rojo">Rojo</li>
-            <li><input type="radio" name="color" value="azul">Azul</li>
-            <li><input type="radio" name="color" value="negro">Negro</li>
-            <li><input type="radio" name="color" value="plateado">Plateado</li>
-            </ul>
-
-          <p>Características <em>(escoge tantas como quieras)</em>:</p>
-            <ul>
-            <li><input type="checkbox" name="features[]" value="cordones brillantes">Cordones brillantes</li>
-            <li><input type="checkbox" name="features[]" value="logo metalico">Logo metálico</li>
-            <li><input type="checkbox" name="features[]" value="suela luminosa">Suela luminosa</li>
-            <li><input type="checkbox" name="features[]" value="WiFi integrado">WiFi integrado</li>
-            </ul>
-
-          <p>Talla</p>
-          <p>Las medidas reflejan el estándar masculino:</p>
-
-    <p>
-    <input type="submit" value="¡Chidos mis Tenis!">
+    <p><input type="submit" value="¡Chidos mis Tenis!">
     <input type="reset"></p>
     </form>
   </body>
