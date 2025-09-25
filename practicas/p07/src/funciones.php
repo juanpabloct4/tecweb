@@ -15,6 +15,39 @@
     }
 
 
+    function ImparParImpar() {
+    $matriz = [];
+    $M = 0;
+    do {
+        for ($j = 0; $j < 3; $j++) {
+            $matriz[$M][$j] = rand(1, 1000);
+        }
+        $M += 1;
+    } while (!($matriz[$M-1][0] % 2 != 0 && $matriz[$M-1][1] % 2 == 0 && $matriz[$M-1][2] % 2 != 0));
+
+    foreach ($matriz as $i => $fila) { // $i es el índice de la fila
+        foreach ($fila as $j => $valor) {
+            // Revisamos si es la última fila
+            if ($i == $M - 1) {
+                if ($valor % 2 == 0) {
+                    echo "<span style='color:orange;'>$valor</span> ";
+                } else {
+                    echo "<span style='color:blue;'>$valor</span> ";
+                }
+            } else {
+                // Filas anteriores sin color
+                echo $valor . " ";
+            }
+        }
+        echo "<br>";
+    }
+
+    echo "<br>" . ($M)*3 . " números obtenidos en " . ($M) . " iteraciones";
+}
+
+
+
+
 
 
 
