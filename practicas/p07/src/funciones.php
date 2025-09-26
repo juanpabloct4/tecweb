@@ -43,7 +43,34 @@
     }
 
     echo "<br>" . ($M)*3 . " números obtenidos en " . ($M) . " iteraciones";
-}
+    }
+
+
+    function MultiploWhile(){
+        if(isset($_GET['numero'])){
+            $num = $_GET['numero'];
+            $num_alea = 0;
+            while(true){
+                $num_alea = rand(1, 1000);
+                if($num_alea % $num == 0){
+                    break;
+                }
+            }
+            echo "<p>R = El primer numero multiplo aleatorio de $num es: <b>$num_alea</b></p>";
+        }
+    }
+
+    function MultiploDoWhile(){
+        if(isset($_GET['numero'])){
+            $num = $_GET['numero'];
+            $num_alea = 0;
+
+            do{
+                $num_alea = rand(1, 1000);
+            }while($num_alea % $num != 0);
+            echo "<p>R = El primer numero multiplo aleatorio de $num es: <b>$num_alea</b></p>";
+        }
+    }
 
 
 
