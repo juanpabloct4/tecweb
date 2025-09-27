@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Práctica 4</title>
+    <title>Práctica 7</title>
 </head>
 <body>
     <?php
@@ -68,6 +68,27 @@
     <?php
         LetrasASCII();
     ?>
+
+    <hr>
+
+    <h2>Ejercicio 5</h2>
+    <p>Usar las variables $edad y $sexo en una instrucción if para identificar una persona de
+    sexo “femenino”, cuya edad oscile entre los 18 y 35 años y mostrar un mensaje de
+    bienvenida apropiado. En caso contrario, deberá devolverse otro mensaje indicando el error.
+    </p>
+
+    <form action="http://localhost/tecweb/practicas/p07/src/Resp_Ejer5.php" method="post">
+        <fieldset>
+            <label>Edad: </label>
+            <input type="number" name="edad" min="0" max="100" required><br><br>
+            
+            <label>Sexo: </label><br>
+            <input type="radio" name="sexo" value="masculino" required>Masculino<br>
+            <input type="radio" name="sexo" value="femenino">Femenino<br><br>
+            
+            <input type="submit" value="Validar">
+        </fieldset>
+    </form>
     
 </body>
 </html>
