@@ -89,6 +89,22 @@
             <input type="submit" value="Validar">
         </fieldset>
     </form>
+
+    <hr>
+
+    <h2>Ejercicio 6</h2>
+    <p>Crea en código duro un arreglo asociativo que sirva para registrar el parque vehicular de una ciudad.
+    </p>
+
+    <form action="http://localhost/tecweb/practicas/p07/src/Resp_Ejer6.php" method="post">
+        <fieldset>
+            <legend>Parque vehicuar</legend><br>
+            <label>Matrícula: </label><input type="text" name="matricula"><br><br>
+
+            <input type="submit" name="consulta" value="Consultar">
+            <input type="submit" name="consulta" value="Consulta Completa">
+        </fieldset>
+    </form>
     
 </body>
 </html>
