@@ -33,7 +33,7 @@
 
     <h2>Ejercicio 2</h2>
     <p>Proporcionar los valores de $a, $b, $c como sigue:</p>
-    <p>$a = "ManejadorSQL"; <br> $b = 'MySQL'; <br> $c = &$a;</p>
+    <p>$a = "ManejadorSQL"; <br /> $b = 'MySQL'; <br /> $c = &amp;$a;</p>
     <p>a. Ahora muestra el contenido de cada variable:</p>
     <?php
         $a = "ManejadorSQL";
@@ -48,7 +48,7 @@
         echo '</ul>';
     ?>
     <p>b. Agrega al código actual las siguientes asignaciones:</p>
-    <p>$a = "PHP server"; <br> $b = &$a;</p>
+    <p>$a = "PHP server"; <br /> $b = $a;</p>
     <p>c. Vuelve a mostrar el contenido de cada uno</p>
     <?php
         $a = "PHP server";
@@ -69,7 +69,7 @@
     <h2>Ejercicio 3</h2>
     <p>Muestra el contenido de cada variable inmediantamente después de cada asignación, verificar la evolución
         del tipo de estas variables (imprime todos los componentes de los arreglo):</p>
-    <p>$a = "PHP5"; <br> $z[] = &$a; <br>$b = "5a version de PHP"; <br> $c = $b*10; <br> $a .= $b; <br> $b *= $c; <br> $z[0] = "MySQL";</p>
+    <p>$a = "PHP5"; <br /> $z[] = &amp;$a; <br />$b = "5a version de PHP"; <br /> $c = $b*10; <br /> $a .= $b; <br /> $b *= $c; <br /> $z[0] = "MySQL";</p>
 
     <?php
         echo '<h4>Respuesta</h4>';
@@ -117,7 +117,7 @@
 
     <h2>Ejercicio 5</h2>
     <p>Dar el valor de las variables $a, $b, $c al final del siguiente scrip:</p>
-    <p>$a = "7 personas";<br>$b = (integer) $a;<br>$a = "9E3";<br>$c = (double) $a;
+    <p>$a = "7 personas";<br />$b = (integer) $a;<br />$a = "9E3";<br />$c = (double) $a; </p>
 
     <?php
         unset($a);
@@ -138,9 +138,9 @@
     ?>
 
     <h2>Ejercicio 6</h2>
-    <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función var_dump(< datos >). </p>
+    <p>Dar y comprobar el valor booleano de las variables $a, $b, $c, $d, $e y $f y muéstralas usando la función var_dump(datos). </p>
     <p>Después investiga una función de PHP que permita transformar el valor booleano de $c y $e en uno que se pueda mostrar con un echo:</p>
-    <p>$a = “0”;<br>$b = “TRUE”;<br>$c = FALSE;<br>$d = ($a OR $b);<br>$e = ($a AND $c);<br>$f = ($a XOR $b);</p>
+    <p>$a = “0”;<br />$b = “TRUE”;<br />$c = FALSE;<br />$d = ($a OR $b);<br />$e = ($a AND $c);<br />$f = ($a XOR $b);</p>
     
     <?php
         unset($a);
@@ -164,16 +164,16 @@
         echo '<li>$f = '; var_dump($f); echo '</li>';
         echo '</ul>';
 
-        echo '<p> con var_export: ';
+        echo '<p> con var_export: </p>';
         echo '<ul>';
         echo '<li>$c = ' . var_export($c, true) . '</li>';
         echo '<li>$e = ' . var_export($e, true) . '</li>';
         echo '</ul>';
     ?>
 
-    <h2>Ejercicio 7</h2
+    <h2>Ejercicio 7</h2>
     <p>Usando la variable predefinida $_SERVER, determina lo siguiente:</p>
-    <p>a. La versión de Apache y PHP,<br>b. El nombre del sistema operativo (servidor),<br>c. El idioma del navegador(cliente).</p>
+    <p>a. La versión de Apache y PHP,<br />b. El nombre del sistema operativo (servidor),<br />c. El idioma del navegador(cliente).</p>
     <?php
         echo "<h4>Respuesta</h4>";
         echo '<ul>';
@@ -184,6 +184,10 @@
         echo '</ul>';
     ?>
 
+    <p>
+    <a href="https://validator.w3.org/check?uri=referer"><img
+      src="https://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" height="31" width="88" /></a>
+    </p>
 
 </body>
 </html>
