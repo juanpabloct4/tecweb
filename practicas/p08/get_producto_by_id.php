@@ -8,7 +8,7 @@
 	if (!empty($id))
 	{
 		/** SE CREA EL OBJETO DE CONEXION */
-		@$link = new mysqli('localhost', 'root', 'jupacito2004', 'marketzone');	
+		@$link = new mysqli('localhost', 'root', '', 'marketzone2');	
 
 		/** comprobar la conexión */
 		if ($link->connect_errno) 
