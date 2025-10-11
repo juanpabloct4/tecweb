@@ -10,6 +10,14 @@
             li {
             margin-bottom: 15px; /* espacio entre cada elemento */
             }
+            label {
+                display: inline-block;
+                width: 150px;
+            }
+            input, select, textarea {
+                padding: 5px;
+                width: 250px;
+            }
         </style>
     </head>
     <body>
@@ -25,7 +33,14 @@
 
                 <li>
                     <label for="marca">Marca:</label>
-                    <input type="text" id="marca" name="marca" required>
+                    <select id="marca" name="marca" required>
+                        <option value="">Seleccione una marca</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Xiaomi">Xiaomi</option>
+                        <option value="OPPO">Motorola</option>
+                        <option value="Huawei">Huawei</option>
+                    </select>
                 </li>
 
                 <li>
@@ -44,13 +59,13 @@
                 </li>
 
                 <li>
-                    <labe for="unidades">Unidades:</labe>
+                    <label for="unidades">Unidades:</label>
                     <input type="number" id="unidades" name="unidades" min="0" required>
                 </li>
 
                 <li>
                     <label for="imagen">Ruta de la imagen:</label>
-                    <input type="text" id="imagen" name="imagen" placeholder="img/default.png" value="img/default.png">
+                    <input type="text" id="imagen" name="imagen">
                 </li>
             </ui>
 
@@ -60,5 +75,65 @@
             </p>
         
         </form>
+
+        <script>
+            document.getElementById('formularioProductos').addEventListener('submit', function(event) {
+                let nombre = document.getElementById('nombre').value.trim();
+                let marca = document.getElementById('marca').value;
+                let modelo = document.getElementById('modelo').value.trim();
+                let precio = parseFloat(document.getElementById('precio').value);
+                let detalles = document.getElementById('detalles').value.trim();
+                let unidades = parseInt(document.getElementById('unidades').value);
+                let imagen = document.getElementById('imagen');
+                
+                //validar nombre
+                if(nombre == '' || nombre.length > 100){
+                    alert('El nombre es requerido y debe tener 100 caracteres o menos');
+                    event.preventDefault;
+                    return;
+                }
+
+                //validar marca
+                if (marca === '') {
+                    alert('Debe seleccionar una marca.');
+                    event.preventDefault();
+                    return;
+                }
+
+                //validar modelo
+                let modeloRegex = /^[a-zA-Z0-9\s-]+$/; // alfanumérico + espacio y guión
+                if (modelo === '' || modelo.length > 25 || !modeloRegex.test(modelo)) {
+                    alert('El modelo es requerido, debe ser alfanumérico y tener 25 caracteres o menos.');
+                    event.preventDefault();
+                    return;
+                }
+
+                //validar precio
+                if (isNaN(precio) || precio <= 99.99) {
+                    alert('El precio es requerido y debe ser mayor a 99.99.');
+                    event.preventDefault();
+                    return;
+                }
+
+                //validar detalles
+                if (detalles.length > 250) {
+                    alert('Los detalles deben tener 250 caracteres o menos.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Validar unidades
+                if (isNaN(unidades) || unidades < 0) {
+                    alert('Las unidades son requeridas y deben ser un número mayor o igual a 0.');
+                    event.preventDefault();
+                    return;
+                }
+
+                // Ruta de imagen (opcional)
+                if (imagen.value.trim() === '') {
+                    imagen.value = 'img/default.png';
+                }
+            });
+        </script>
     </body>
 </html>
