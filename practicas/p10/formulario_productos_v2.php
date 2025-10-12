@@ -87,7 +87,11 @@
     ?>
     <h2>Registro de Productos</h2>
 
-    <form id="formularioProductos" action="http://localhost/tecweb/practicas/p09/set_producto_v2.php" method="post" onsubmit="return validarFormulario(event)">
+    <form id="formularioProductos" 
+        action="<?= isset($id) && $id > 0 ? 'update_producto.php' : 'set_producto_v2.php' ?>" 
+        method="post" 
+        onsubmit="return validarFormulario(event)">
+        <input type="hidden" name="id" value="<?= intval($id ?? 0) ?>">
         <ul>
             <input type="hidden" name="id" value="<?= $id ?>" />
             <li>
