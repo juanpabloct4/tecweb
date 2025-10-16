@@ -8,58 +8,108 @@ var baseJSON = {
     "imagen": "img/default.png"
   };
 
-  
-// // FUNCIÓN CALLBACK DE BOTÓN "Buscar"
-// function buscarID(e) {
-//     /**
-//      * Revisar la siguiente información para entender porqué usar event.preventDefault();
-//      * http://qbit.com.mx/blog/2013/01/07/la-diferencia-entre-return-false-preventdefault-y-stoppropagation-en-jquery/#:~:text=PreventDefault()%20se%20utiliza%20para,escuche%20a%20trav%C3%A9s%20del%20DOM
-//      * https://www.geeksforgeeks.org/when-to-use-preventdefault-vs-return-false-in-javascript/
-//      */
-//     e.preventDefault();
 
-//     // SE OBTIENE EL ID A BUSCAR
-//     var id = document.getElementById('search').value;
+function validarFormulario() {
+    const nombre = document.getElementById("name").value.trim();
+    const jsonText = document.getElementById("description").value.trim();
 
-//     // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-//     var client = getXMLHttpRequest();
-//     client.open('POST', './backend/read.php', true);
-//     client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-//     client.onreadystatechange = function () {
-//         // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
-//         if (client.readyState == 4 && client.status == 200) {
-//             console.log('[CLIENTE]\n'+client.responseText);
+    if (nombre === "" || nombre.length > 100) {
+        alert("El nombre es requerido y debe tener máximo 100 caracteres.");
+        return false;
+    }
+
+    let producto;
+    try {
+        producto = JSON.parse(jsonText);
+    } catch (e) {
+        alert("JSON inválido en la descripción.");
+        return false;
+    }
+
+    if (!producto.marca || producto.marca.trim() === "") {
+        alert("Debe especificar una marca en el JSON.");
+        return false;
+    }
+
+    if (!producto.modelo || producto.modelo.trim() === "" || producto.modelo.length > 25) {
+        alert("El modelo es requerido y debe tener máximo 25 caracteres en el JSON.");
+        return false;
+    }
+
+    if (!producto.precio || parseFloat(producto.precio) <= 99.99) {
+        alert("El precio debe ser mayor a 99.99 en el JSON.");
+        return false;
+    }
+
+    if (producto.detalles && producto.detalles.length > 250) {
+        alert("Los detalles no pueden exceder 250 caracteres en el JSON.");
+        return false;
+    }
+
+    if (producto.unidades === undefined || parseInt(producto.unidades) < 0) {
+        alert("Las unidades deben ser un número mayor o igual a 0 en el JSON.");
+        return false;
+    }
+
+    if (!producto.imagen || producto.imagen.trim() === "") {
+        producto.imagen = "img/default.png";
+    }
+
+    return true;
+}
+
+
+// FUNCIÓN CALLBACK DE BOTÓN "Buscar"
+function buscarID(e) {
+    /**
+     * Revisar la siguiente información para entender porqué usar event.preventDefault();
+     * http://qbit.com.mx/blog/2013/01/07/la-diferencia-entre-return-false-preventdefault-y-stoppropagation-en-jquery/#:~:text=PreventDefault()%20se%20utiliza%20para,escuche%20a%20trav%C3%A9s%20del%20DOM
+     * https://www.geeksforgeeks.org/when-to-use-preventdefault-vs-return-false-in-javascript/
+     */
+    e.preventDefault();
+
+    // SE OBTIENE EL ID A BUSCAR
+    var id = document.getElementById('search').value;
+
+    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
+    var client = getXMLHttpRequest();
+    client.open('POST', './backend/read.php', true);
+    client.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    client.onreadystatechange = function () {
+        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
+        if (client.readyState == 4 && client.status == 200) {
+            console.log('[CLIENTE]\n'+client.responseText);
             
-//             // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
-//             let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
+            // SE OBTIENE EL OBJETO DE DATOS A PARTIR DE UN STRING JSON
+            let productos = JSON.parse(client.responseText);    // similar a eval('('+client.responseText+')');
             
-//             // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
-//             if(Object.keys(productos).length > 0) {
-//                 // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
-//                 let descripcion = '';
-//                     descripcion += '<li>precio: '+productos.precio+'</li>';
-//                     descripcion += '<li>unidades: '+productos.unidades+'</li>';
-//                     descripcion += '<li>modelo: '+productos.modelo+'</li>';
-//                     descripcion += '<li>marca: '+productos.marca+'</li>';
-//                     descripcion += '<li>detalles: '+productos.detalles+'</li>';
+            // SE VERIFICA SI EL OBJETO JSON TIENE DATOS
+            if(Object.keys(productos).length > 0) {
+                // SE CREA UNA LISTA HTML CON LA DESCRIPCIÓN DEL PRODUCTO
+                let descripcion = '';
+                    descripcion += '<li>precio: '+productos.precio+'</li>';
+                    descripcion += '<li>unidades: '+productos.unidades+'</li>';
+                    descripcion += '<li>modelo: '+productos.modelo+'</li>';
+                    descripcion += '<li>marca: '+productos.marca+'</li>';
+                    descripcion += '<li>detalles: '+productos.detalles+'</li>';
                 
-//                 // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
-//                 let template = '';
-//                     template += `
-//                         <tr>
-//                             <td>${productos.id}</td>
-//                             <td>${productos.nombre}</td>
-//                             <td><ul>${descripcion}</ul></td>
-//                         </tr>
-//                     `;
+                // SE CREA UNA PLANTILLA PARA CREAR LA(S) FILA(S) A INSERTAR EN EL DOCUMENTO HTML
+                let template = '';
+                    template += `
+                        <tr>
+                            <td>${productos.id}</td>
+                            <td>${productos.nombre}</td>
+                            <td><ul>${descripcion}</ul></td>
+                        </tr>
+                    `;
 
-//                 // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
-//                 document.getElementById("productos").innerHTML = template;
-//             }
-//         }
-//     };
-//     client.send("id="+id);
-// }
+                // SE INSERTA LA PLANTILLA EN EL ELEMENTO CON ID "productos"
+                document.getElementById("productos").innerHTML = template;
+            }
+        }
+    };
+    client.send("id="+id);
+}
 
 
 function buscarProducto(e) {
@@ -107,29 +157,30 @@ function buscarProducto(e) {
 
 // FUNCIÓN CALLBACK DE BOTÓN "Agregar Producto"
 function agregarProducto(e) {
-    e.preventDefault();
+    e.preventDefault(); //Esto evita que se recargue la página
 
-    // SE OBTIENE DESDE EL FORMULARIO EL JSON A ENVIAR
-    var productoJsonString = document.getElementById('description').value;
-    // SE CONVIERTE EL JSON DE STRING A OBJETO
-    var finalJSON = JSON.parse(productoJsonString);
-    // SE AGREGA AL JSON EL NOMBRE DEL PRODUCTO
-    finalJSON['nombre'] = document.getElementById('name').value;
-    // SE OBTIENE EL STRING DEL JSON FINAL
-    productoJsonString = JSON.stringify(finalJSON,null,2);
+    if (!validarFormulario()) return; // Detiene si la validación falla
 
-    // SE CREA EL OBJETO DE CONEXIÓN ASÍNCRONA AL SERVIDOR
-    var client = getXMLHttpRequest();
+    const nombre = document.getElementById("name").value.trim();
+    const productoJson = JSON.parse(document.getElementById("description").value);
+
+    // Añadir el nombre al JSON
+    productoJson.nombre = nombre;
+
+    const jsonString = JSON.stringify(productoJson, null, 2);
+
+    const client = getXMLHttpRequest();
     client.open('POST', './backend/create.php', true);
     client.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
     client.onreadystatechange = function () {
-        // SE VERIFICA SI LA RESPUESTA ESTÁ LISTA Y FUE SATISFACTORIA
         if (client.readyState == 4 && client.status == 200) {
-            console.log(client.responseText);
+            alert(client.responseText); // ⬅️ Mostrar mensaje de éxito o error
+            document.getElementById("task-form").reset(); // limpiar formulario
         }
     };
-    client.send(productoJsonString);
+    client.send(jsonString);
 }
+
 
 // SE CREA EL OBJETO DE CONEXIÓN COMPATIBLE CON EL NAVEGADOR
 function getXMLHttpRequest() {
